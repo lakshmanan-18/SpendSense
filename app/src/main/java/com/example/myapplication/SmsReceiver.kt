@@ -15,7 +15,7 @@ class SmsReceiver : BroadcastReceiver() {
                 val body = message.displayMessageBody
                 val expense = parseExpense(body)
                 if (expense != null) {
-                    ExpenseRepository.addExpense(context, expense)
+                    ExpenseRepository.addExpense(expense)
                 }
             }
         }
