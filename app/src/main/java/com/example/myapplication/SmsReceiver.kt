@@ -41,13 +41,16 @@ class SmsReceiver : BroadcastReceiver() {
             }
             
             val category = ExpenseRepository.categorize(message)
+            val analysis = ExpenseRepository.analyzeSpend(message, category)
             
             return Expense(
                 amount = amount,
                 currency = currency,
                 description = message,
                 timestamp = System.currentTimeMillis(),
-                category = category
+                category = category,
+                isGoodSpend = analysis.first,
+                suggestion = analysis.second
             )
         }
         return null
